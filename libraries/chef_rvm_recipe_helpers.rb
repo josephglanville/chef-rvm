@@ -30,16 +30,19 @@ class Chef
             ruby = rubie.fetch("version")
             ruby_patch = rubie.fetch("patch", nil)
             ruby_rubygems_version = rubie.fetch("rubygems_version", nil)
+            ruby_install_options = rubie.fetch("install_options", {})
           else
             ruby = rubie
             ruby_patch = nil
             ruby_rubygems_version = nil
+            ruby_install_options = {}
           end
 
           rvm_ruby ruby do
             patch            ruby_patch
             user             opts[:user]
             rubygems_version ruby_rubygems_version
+            install_options  ruby_install_options
           end
         end
 
